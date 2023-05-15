@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 
 // core material
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 const material  = [
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatToolbarModule
 ];
 
 
