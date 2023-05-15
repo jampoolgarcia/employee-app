@@ -1,7 +1,8 @@
+// core
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// core modules
+// core material
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
