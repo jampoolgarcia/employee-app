@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EmployeeService {
 
-  public url = "http://localhost:3000/productList"
+  public url = "http://localhost:3000/Employees"
 
   constructor(private _http: HttpClient) { }
 
