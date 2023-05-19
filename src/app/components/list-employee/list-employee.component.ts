@@ -36,13 +36,32 @@ export class ListEmployeeComponent implements AfterViewInit  {
   }
 
   fillEmployee(){
-    //this.dataSource = new MatTableDataSource(this._service.findAll());
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this._service.findAll().subscribe(
+      res =>{
+        this.dataSource = new MatTableDataSource(res);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
+    )
   }
 
+  
+
+  // edit(record: EmployeeI, id: number){
+  //   this._service.update(record, id).subscribe(
+  //     res =>{
+  //       alert('Update successfull...');
+  //     }
+  //   )
+  // }
+
   delete(id: number){
-    this._service.delete(id);
+    this._service.delete(id).subscribe(
+      res =>{
+        alert('Deleted successfull...');
+        this.fillEmployee(); 
+      }
+    );
   }
 }
 
