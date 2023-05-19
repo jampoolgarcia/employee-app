@@ -23,9 +23,7 @@ export class ListEmployeeComponent implements AfterViewInit  {
   }
 
   ngAfterViewInit() {
-    this.dataSource = new MatTableDataSource(this._service.findAll());
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.fillEmployee();
   } 
 
   applyFilter(event: Event) {
@@ -35,6 +33,16 @@ export class ListEmployeeComponent implements AfterViewInit  {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  fillEmployee(){
+    //this.dataSource = new MatTableDataSource(this._service.findAll());
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  delete(id: number){
+    this._service.delete(id);
   }
 }
 
