@@ -1,15 +1,6 @@
 {
   "employees": [
     {
-      "id": 1,
-      "fullname": "John Smith",
-      "phone": "1234567890",
-      "email": "johnsmith@example.com",
-      "dateIn": "2023-05-19",
-      "civilStatus": "Single",
-      "sex": "Male"
-    },
-    {
       "id": 2,
       "fullname": "Jane Johnson",
       "phone": "0987654321",

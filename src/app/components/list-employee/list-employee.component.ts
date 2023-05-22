@@ -1,9 +1,11 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { EmployeeI } from 'src/app/models/employee';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { MsgConfirmComponent } from 'src/app/shared/msg-confirm/msg-confirm.component';
 
 @Component({
   selector: 'app-list-employee',
@@ -18,7 +20,7 @@ export class ListEmployeeComponent implements AfterViewInit  {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private _service: EmployeeService) {
+  constructor(private _service: EmployeeService, public dialog: MatDialog) {
 
   }
 
@@ -45,6 +47,17 @@ export class ListEmployeeComponent implements AfterViewInit  {
     )
   }
 
+  openDialog(id: number) {
+    this.dialog.open(MsgConfirmComponent, {
+      width: '300px',
+      data: {msg: 'Are you sure you want to delete the employee?'}
+    }).afterClosed().subscribe(res => {
+      console.log(res);
+      if(res)
+        this.delete(id);
+    });
+  }
+
   
 
   // edit(record: EmployeeI, id: number){
@@ -55,10 +68,9 @@ export class ListEmployeeComponent implements AfterViewInit  {
   //   )
   // }
 
-  delete(id: number){
+  private delete(id: number){
     this._service.delete(id).subscribe(
       res =>{
-        alert('Deleted successfull...');
         this.fillEmployee(); 
       }
     );
