@@ -12,7 +12,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 })
 export class ListEmployeeComponent implements AfterViewInit  {
 
-  public displayedColumns: string[] = ['fullName', 'phone', 'email', 'dateIn', 'civilStatus', 'sex', 'actions'];
+  public displayedColumns: string[] = ['fullname', 'phone', 'email', 'dateIn', 'civilStatus', 'sex', 'actions'];
   public dataSource!: MatTableDataSource<EmployeeI>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
