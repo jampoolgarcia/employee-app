@@ -33,21 +33,14 @@
       <mat-form-field>
         <mat-label>Civil States</mat-label>
         <mat-select>
-          <mat-option value="single">Single</mat-option>
-          <mat-option value="married">Married</mat-option>
-          <mat-option value="free">Free Union</mat-option>
-          <mat-option value="separate">Separate</mat-option>
-          <mat-option value="divorced">Divorced</mat-option>
-          <mat-option value="widower">Widower</mat-option>
+          <mat-option *ngFor="let item of civilState" [value]="item">{{ item }}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Sex</mat-label>
         <mat-select>
-          <mat-option value="male">Male</mat-option>
-          <mat-option value="female">Female</mat-option>
-          <mat-option value="other">Other</mat-option>
+          <mat-option  *ngFor="let item of sex" [value]="item" >{{ item }}</mat-option>
         </mat-select>
       </mat-form-field>
       
@@ -55,7 +48,7 @@
     
     <mat-card-actions align="end">
       <button mat-button>Cancel</button>
-      <button mat-button>Submit</button>
+      <button mat-button class="btn-success">Submit</button>
     </mat-card-actions>
   
     <mat-card-footer>

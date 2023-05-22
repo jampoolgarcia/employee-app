@@ -13,9 +13,16 @@ form {
 
 mat-form-field{
   width: 100%;
+  font-size: 16px;
   margin-top: 0.5rem;
 }
 
 .mat-icon-button {
   text-align: right;
+}
+
+.btn-success {
+  background-color: #f44336;
+  border-color: #f44336;
+  color: #fff;
 }
