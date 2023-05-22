@@ -3,12 +3,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // material
+import {MatCommonModule} from '@angular/material/core';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 // table material
 import {MatTableModule} from '@angular/material/table';
@@ -27,6 +30,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 
 const MATERIAL = [
+  MatCommonModule,
+  MatButtonToggleModule,
   MatToolbarModule,
   MatIconModule,
   MatButtonModule,
@@ -42,7 +47,8 @@ const MATERIAL = [
   MatPaginatorModule,
   MatSortModule,
   MatSnackBarModule,
-  MatCardModule
+  MatCardModule,
+  MatProgressBarModule
 ]
 
 @NgModule({
