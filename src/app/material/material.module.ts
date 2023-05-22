@@ -8,6 +8,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 // table material
 import {MatTableModule} from '@angular/material/table';
@@ -40,6 +41,7 @@ const MATERIAL = [
   MatTableModule,
   MatPaginatorModule,
   MatSortModule,
+  MatSnackBarModule,
   MatCardModule
 ]
 

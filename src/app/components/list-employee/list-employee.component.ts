@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { EmployeeI } from 'src/app/models/employee';
@@ -20,7 +21,9 @@ export class ListEmployeeComponent implements AfterViewInit  {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private _service: EmployeeService, public dialog: MatDialog) {
+  constructor(private _service: EmployeeService, 
+      public dialog: MatDialog,
+      private _snackBar: MatSnackBar) {
 
   }
 
@@ -52,9 +55,9 @@ export class ListEmployeeComponent implements AfterViewInit  {
       width: '300px',
       data: {msg: 'Are you sure you want to delete the employee?'}
     }).afterClosed().subscribe(res => {
-      console.log(res);
       if(res)
         this.delete(id);
+
     });
   }
 
@@ -72,6 +75,9 @@ export class ListEmployeeComponent implements AfterViewInit  {
     this._service.delete(id).subscribe(
       res =>{
         this.fillEmployee(); 
+        this._snackBar.open('Deleted successfull...', '', {
+          duration: 3000
+        });
       }
     );
   }
