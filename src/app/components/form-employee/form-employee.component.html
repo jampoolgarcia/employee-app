@@ -6,52 +6,52 @@
     </mat-card-header>
   
     <mat-card-content>
-      <form>
+      <form [formGroup]="form">
         <mat-form-field>
           <mat-label>Name</mat-label>
-          <input matInput>
+          <input matInput formControlName="fullname">
         </mat-form-field>
     
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input type="email" matInput>
+          <input formControlName="email" type="email" matInput>
         </mat-form-field>
 
         <mat-form-field color="accent">
           <mat-label>Date</mat-label>
-          <input matInput [matDatepicker]="picker">
+          <input formControlName="dateIn" matInput [matDatepicker]="picker">
           <mat-datepicker-toggle  matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
     
       <mat-form-field>
-          <mat-label>Telefono</mat-label>
-          <input type="number" matInput>
+          <mat-label>Phone</mat-label>
+          <input formControlName="phone" type="number" matInput>
         </mat-form-field>
-      </form>
+   
 
       <mat-form-field>
         <mat-label>Civil States</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let item of civilState" [value]="item">{{ item }}</mat-option>
+        <mat-select formControlName="civilStatus">
+          <mat-option *ngFor="let item of civilStatus" [value]="item">{{ item }}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Sex</mat-label>
-        <mat-select>
+        <mat-select formControlName="sex">
           <mat-option  *ngFor="let item of sex" [value]="item" >{{ item }}</mat-option>
         </mat-select>
       </mat-form-field>
-      
+     </form>
     </mat-card-content>
     
     <mat-card-actions align="end">
-      <button mat-button>Cancel</button>
-      <button mat-button class="btn-success">Submit</button>
+      <button mat-button routerLink="/">Cancel</button>
+      <button mat-button [disabled]="form.invalid" class="btn-success" (click)="onSubmit(form.value)" >Submit</button>
     </mat-card-actions>
   
-    <mat-card-footer>
+    <mat-card-footer *ngIf="loading">
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </mat-card-footer>
   </mat-card>
