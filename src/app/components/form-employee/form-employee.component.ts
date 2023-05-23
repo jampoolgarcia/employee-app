@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeI } from 'src/app/models/employee';
 import { EmployeeService } from 'src/app/services/employee.service';
 
@@ -11,13 +12,14 @@ import { EmployeeService } from 'src/app/services/employee.service';
 })
 export class FormEmployeeComponent implements OnInit {
 
-  public sex = ['male', 'female', 'other'];
-  public civilStatus = ['single', 'married', 'free', 'separate', 'divorced', 'widower'];
+  public sex = ['Male', 'Female', 'Other'];
+  public civilStatus = ['Single', 'Married', 'Free', 'Separate', 'Divorced', 'Widower'];
   public form!: FormGroup;
   public id!: number;
   public loading = false;
 
-  constructor(private _snackBar: MatSnackBar, private fb: FormBuilder, private _service: EmployeeService) { 
+  constructor(private _router: Router, private aRouter: ActivatedRoute, private _snackBar: MatSnackBar, private fb: FormBuilder, private _service: EmployeeService) { 
+    this.id = aRouter.snapshot.params['id'];
     this.buildingForm();
   }
 
@@ -36,6 +38,8 @@ export class FormEmployeeComponent implements OnInit {
     this.loading = true;
     if(!this.id){
       this.save(em);
+    }else{
+      this.update(em);
     }
   }
 
@@ -53,8 +57,31 @@ export class FormEmployeeComponent implements OnInit {
     )
   }
 
+  private update(record: EmployeeI){
+    this._service.update(record, this.id).subscribe(
+      res => {
+        this.form.reset();
+        this.loading = false;
+        this._snackBar.open('Update successfull...', '', {
+          duration: 1500
+        });
+        this._router.navigate(['/']);
+      }
+    )
+  }
+
   ngOnInit(): void {
-    
+    if(this.id){
+     
+      this._service.findOne(this.id).subscribe(
+        res =>{
+          this.form.patchValue(res);
+        } 
+          
+
+      )
+    } 
+      
   }
 
 }

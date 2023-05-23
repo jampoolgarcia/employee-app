@@ -26,6 +26,10 @@ export class EmployeeService {
     return this._http.get<EmployeeI[]>(this.url);
   }
 
+  findOne(id: number){
+    return this._http.get<EmployeeI>(`${this.url}/${id}`);
+  }
+
   delete(id: number){
     return this._http.delete<EmployeeI[]>(`${this.url}/${id}`);
   }
